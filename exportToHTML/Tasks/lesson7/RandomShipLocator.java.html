@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>RandomShipLocator.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+RandomShipLocator.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">Tasks</span><span class="s2">.</span><span class="s1">lesson7</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Scanner</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Random</span><span class="s2">;</span>
+<span class="s0">public class </span><span class="s1">RandomShipLocator </span><span class="s2">{</span>
+    <span class="s0">public static void </span><span class="s1">ShipDeterminator</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[][] </span><span class="s1">matrix</span><span class="s2">) {</span>
+
+        <span class="s1">Scanner sc </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Scanner</span><span class="s2">(</span><span class="s1">System</span><span class="s2">.</span><span class="s1">in</span><span class="s2">);</span>
+
+        <span class="s1">String sorgu </span><span class="s2">= </span><span class="s3">&quot; &quot;</span><span class="s2">;</span>
+        <span class="s0">while </span><span class="s2">(!</span><span class="s1">sorgu</span><span class="s2">.</span><span class="s1">equals</span><span class="s2">(</span><span class="s3">&quot;xeyr&quot;</span><span class="s2">)) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Daxil etmek istediyiniz gemileri secin: &quot;</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;1-Aircraft Carrier(5 cells)&quot;</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;2-Battleship(4 cells)&quot;</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;3-Submarine(3 cells)&quot;</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;4-Destroyer(3 cells)&quot;</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;5-Patrol Boat(2 cells)&quot;</span><span class="s2">);</span>
+            <span class="s0">int </span><span class="s1">choose </span><span class="s2">= </span><span class="s1">sc</span><span class="s2">.</span><span class="s1">nextInt</span><span class="s2">();</span>
+            <span class="s1">sc</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+            <span class="s0">int </span><span class="s1">numberOfReplacements</span><span class="s2">;</span>
+            <span class="s0">switch </span><span class="s2">(</span><span class="s1">choose</span><span class="s2">) {</span>
+                <span class="s0">case </span><span class="s4">1</span><span class="s2">:</span>
+                    <span class="s1">numberOfReplacements </span><span class="s2">= </span><span class="s4">5</span><span class="s2">;</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+                <span class="s0">case </span><span class="s4">2</span><span class="s2">:</span>
+                    <span class="s1">numberOfReplacements </span><span class="s2">= </span><span class="s4">4</span><span class="s2">;</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+                <span class="s0">case </span><span class="s4">3</span><span class="s2">:</span>
+                    <span class="s1">numberOfReplacements </span><span class="s2">= </span><span class="s4">3</span><span class="s2">;</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+                <span class="s0">case </span><span class="s4">4</span><span class="s2">:</span>
+                    <span class="s1">numberOfReplacements </span><span class="s2">= </span><span class="s4">3</span><span class="s2">;</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+                <span class="s0">case </span><span class="s4">5</span><span class="s2">:</span>
+                    <span class="s1">numberOfReplacements </span><span class="s2">= </span><span class="s4">2</span><span class="s2">;</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+                <span class="s0">default</span><span class="s2">:</span>
+                    <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Yanlış seçim, doğru bir seçim edin.&quot;</span><span class="s2">);</span>
+                    <span class="s0">continue</span><span class="s2">;</span>
+            <span class="s2">}</span>
+            <span class="s1">ShipLocator</span><span class="s2">(</span><span class="s1">matrix</span><span class="s2">,</span><span class="s3">&quot;p&quot;</span><span class="s2">,</span><span class="s1">numberOfReplacements</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Basqa Gemi elave etmek isterdiniz mi&quot;</span><span class="s2">);</span>
+            <span class="s1">sorgu </span><span class="s2">= </span><span class="s1">sc</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">().</span><span class="s1">toLowerCase</span><span class="s2">();</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">ShipLocator</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[][] </span><span class="s1">matrix</span><span class="s2">, </span><span class="s1">String replacement</span><span class="s2">, </span><span class="s0">int </span><span class="s1">count</span><span class="s2">) {</span>
+        <span class="s1">Random random </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Random</span><span class="s2">();</span>
+        <span class="s0">int </span><span class="s1">rows </span><span class="s2">= </span><span class="s1">matrix</span><span class="s2">.</span><span class="s1">length</span><span class="s2">;</span>
+        <span class="s0">int </span><span class="s1">cols </span><span class="s2">= </span><span class="s1">matrix</span><span class="s2">[</span><span class="s4">0</span><span class="s2">].</span><span class="s1">length</span><span class="s2">;</span>
+        <span class="s0">boolean </span><span class="s1">replaced </span><span class="s2">= </span><span class="s0">false</span><span class="s2">;</span>
+
+        <span class="s0">while </span><span class="s2">(!</span><span class="s1">replaced</span><span class="s2">) {</span>
+
+            <span class="s0">int </span><span class="s1">startRow </span><span class="s2">= </span><span class="s1">random</span><span class="s2">.</span><span class="s1">nextInt</span><span class="s2">(</span><span class="s1">rows</span><span class="s2">);</span>
+            <span class="s0">int </span><span class="s1">startCol </span><span class="s2">= </span><span class="s1">random</span><span class="s2">.</span><span class="s1">nextInt</span><span class="s2">(</span><span class="s1">cols</span><span class="s2">);</span>
+
+            <span class="s0">boolean </span><span class="s1">canReplaceHorizontally </span><span class="s2">= (</span><span class="s1">startCol </span><span class="s2">+ </span><span class="s1">count </span><span class="s2">&lt;= </span><span class="s1">cols</span><span class="s2">);</span>
+            <span class="s0">boolean </span><span class="s1">canReplaceVertically </span><span class="s2">= (</span><span class="s1">startRow </span><span class="s2">+ </span><span class="s1">count </span><span class="s2">&lt;= </span><span class="s1">rows</span><span class="s2">);</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">canReplaceHorizontally </span><span class="s2">&amp;&amp; </span><span class="s1">canReplaceVertically</span><span class="s2">) {</span>
+
+                <span class="s0">int </span><span class="s1">direction </span><span class="s2">= </span><span class="s1">random</span><span class="s2">.</span><span class="s1">nextInt</span><span class="s2">(</span><span class="s4">2</span><span class="s2">);</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">direction </span><span class="s2">== </span><span class="s4">0</span><span class="s2">) {</span>
+                    <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s4">0</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt; </span><span class="s1">count</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+                        <span class="s1">matrix</span><span class="s2">[</span><span class="s1">startRow</span><span class="s2">][</span><span class="s1">startCol </span><span class="s2">+ </span><span class="s1">i</span><span class="s2">] = </span><span class="s1">replacement</span><span class="s2">;</span>
+                    <span class="s2">}</span>
+                <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                    <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s4">0</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt; </span><span class="s1">count</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+                        <span class="s1">matrix</span><span class="s2">[</span><span class="s1">startRow </span><span class="s2">+ </span><span class="s1">i</span><span class="s2">][</span><span class="s1">startCol</span><span class="s2">] = </span><span class="s1">replacement</span><span class="s2">;</span>
+                    <span class="s2">}</span>
+                <span class="s2">}</span>
+                <span class="s1">replaced </span><span class="s2">= </span><span class="s0">true</span><span class="s2">;</span>
+            <span class="s2">} </span><span class="s0">else if </span><span class="s2">(</span><span class="s1">canReplaceHorizontally</span><span class="s2">) {</span>
+                <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s4">0</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt; </span><span class="s1">count</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+                    <span class="s1">matrix</span><span class="s2">[</span><span class="s1">startRow</span><span class="s2">][</span><span class="s1">startCol </span><span class="s2">+ </span><span class="s1">i</span><span class="s2">] = </span><span class="s1">replacement</span><span class="s2">;</span>
+                <span class="s2">}</span>
+                <span class="s1">replaced </span><span class="s2">= </span><span class="s0">true</span><span class="s2">;</span>
+            <span class="s2">} </span><span class="s0">else if </span><span class="s2">(</span><span class="s1">canReplaceVertically</span><span class="s2">) {</span>
+
+                <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s4">0</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt; </span><span class="s1">count</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+                    <span class="s1">matrix</span><span class="s2">[</span><span class="s1">startRow </span><span class="s2">+ </span><span class="s1">i</span><span class="s2">][</span><span class="s1">startCol</span><span class="s2">] = </span><span class="s1">replacement</span><span class="s2">;</span>
+                <span class="s2">}</span>
+                <span class="s1">replaced </span><span class="s2">= </span><span class="s0">true</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>
