@@ -18,9 +18,13 @@ public enum Ranks {
     KING(13),
     ACE(14);
 
-    private int point;
+    private final int point;
 
     Ranks(int point){
         this.point = point;
+    }
+
+    public int getPoint() {
+        return point;
     }
 }

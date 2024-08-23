@@ -1,51 +1,53 @@
-//package Tasks.lesson16.entertaining;
-//
-//import javax.print.attribute.standard.PresentationDirection;
-//import java.util.ArrayList;
-//import java.util.EnumMap;
-//import java.util.Random;
-//
-//public class Deck {
-//
-////   private enum cardSuits {
-////
-////       private static final Random  = new Random();
-////       public static cardSuits randomCardsuits(){
-////           cardSuits[] cardSuits = values();
-////           return cardSuits[]
-////       }
-////   }
-//
-//    public void getRandomSuit() {
-//        Random random = new Random();
-//        int index = random.nextInt(0, 3);
-//        Suit suit = Suit.values()[index];
-//        int point = suit.getPoint();
-//    }
-//   private enum cardRanks {DEUCE,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE,TEN,JACK,QUEEN,KING,ACE};
-//
-//   private ArrayList<Card> deck;
-//
-//    public Deck() {
-//        this.deck = new ArrayList<>() ;
-//    }
-//
-//    public void populateDeck() {
-//        Random rnd = new Random();
-//        int times = 0;
-//        while (times < 6) {
-//
-//            Card card = new Card(cardSuits[randomSuitIndex], cardRanks[randomRankIndex]);
-//            deck.add(card);
-//            times++;
-//        }
-//    }
-//
-//    public void getCards(){
-//        for(Card card: deck){
-//            System.out.println(card);
-//        }
-//    }
-//
-//
-//}
+package Tasks.lesson16.entertaining;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
+public class Deck {
+
+    private List<Card> deck;
+
+    Ranks[] ranks = Ranks.values();
+    Suits[] suits = Suits.values();
+
+    Random rnd = new Random();
+
+    public Deck() {
+        this.deck = new ArrayList<>();
+    }
+
+    public List<Card> getDeck() {
+        return deck;
+    }
+
+    public void setDeck(List<Card> deck) {
+        this.deck = deck;
+    }
+
+    public void shuffleDeck() {
+
+        Collections.shuffle(deck);
+    }
+
+    public void populateCards(Deck deck){
+
+        int randomRanksIndex = rnd.nextInt(ranks.length);
+        int randomSuitsIndex = rnd.nextInt(suits.length);
+        Card card = new Card(suits[randomSuitsIndex], ranks[randomRanksIndex]);
+        deck.getDeck().add(card);
+    }
+
+    public int calculateTotalPoint() {
+
+        int totalPoint = 0;
+
+        for(Card card: deck){
+            for(Ranks rank: card.getCard().values()){
+                totalPoint +=rank.getPoint();
+            }
+        }
+        return totalPoint;
+    }
+}

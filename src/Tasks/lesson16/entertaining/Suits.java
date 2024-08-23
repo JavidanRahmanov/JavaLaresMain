@@ -1,6 +1,6 @@
 package Tasks.lesson16.entertaining;
 
-public enum Suit {
+public enum Suits {
     HEARTS (),
     DIAMONDS (),
     CLUBS (),
