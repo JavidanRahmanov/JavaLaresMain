@@ -17,6 +17,7 @@ public class Game2048 {
     }
 
     public void play() {
+
         spawnTile();
         spawnTile();
         while (true) {
@@ -35,7 +36,9 @@ public class Game2048 {
                 case 'D': moveRight(); break;
                 default: System.out.println("Invalid move. Please try again.");
             }
-            spawnTile();
+            if (!isGameOver()) {
+                spawnTile();
+            }
             if (hasWon()) {
                 printBoard();
                 System.out.println("Congratulations! You've reached the 2048 tile! Final score: " + score);
@@ -43,6 +46,7 @@ public class Game2048 {
             }
         }
     }
+
 
     private void spawnTile() {
         int value = random.nextInt(10) == 0 ? 4 : 2;
@@ -55,12 +59,14 @@ public class Game2048 {
     }
 
     private void printBoard() {
-        for (int[] row : board) {
-            for (int cell : row) {
-                System.out.printf("%4d", cell);
+        for (int row = 0; row < SIZE; row++) {
+            System.out.println("---------------------");
+            for (int col = 0; col < SIZE; col++) {
+                System.out.printf("|%4d", board[row][col]);
             }
-            System.out.println();
+            System.out.println("|");
         }
+        System.out.println("---------------------");
         System.out.println();
     }
 
@@ -141,13 +147,19 @@ public class Game2048 {
     }
 
     private boolean isGameOver() {
+
         for (int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
+
                 if (board[row][col] == 0) return false;
+
                 if (col < SIZE - 1 && board[row][col] == board[row][col + 1]) return false;
+
                 if (row < SIZE - 1 && board[row][col] == board[row + 1][col]) return false;
             }
         }
+
+
         return true;
     }
 
@@ -160,4 +172,3 @@ public class Game2048 {
         return false;
     }
 }
-

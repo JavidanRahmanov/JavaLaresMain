@@ -1,0 +1,4 @@
+Sport: athletics, badminton, boomerang, coach, martial arts
+Animals: giraffe, baboon, tiger, capybara, cheetah
+Fruits: avocado, blackberry, plum, peach, dates
+Musical Instruments: saxophone, trumpet, mandolin, sitar, piano

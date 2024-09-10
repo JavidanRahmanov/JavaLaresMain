@@ -1,62 +1,86 @@
 package Tasks.lesson21.entertaining;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Hangman {
     public static void main(String[] args) {
 
-        ArrayList<String> words = new ArrayList<>();
-        words.add("apple");
-        words.add("banana");
-        words.add("grape");
-        words.add("orange");
-        words.add("watermelon");
+        String filepath = "C:\\Users\\User\\IdeaProjects\\JavaLaresMain\\src\\Tasks\\lesson21\\entertaining\\data.txt";
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(filepath));
+
+            if (!lines.isEmpty()) {
+                Random rnd = new Random();
+                int rndIndex = rnd.nextInt(lines.size());
+
+                String rndLine = lines.get(rndIndex).trim();
+                String[] splitLine = rndLine.split(":");
+
+                System.out.println("Word's category: " + splitLine[0].trim());
+
+                String[] words = splitLine[1].split(",");
+                int rdnWordsIndex = rnd.nextInt(words.length);
+                String rndWord = words[rdnWordsIndex].trim();
+
+                StringBuilder guessWord = new StringBuilder();
+                for (int i = 0; i < rndWord.length(); i++) {
+                    char c = rndWord.charAt(i);
+                    if (c == ' ') {
+                        guessWord.append(' ');
+                    } else {
+                        guessWord.append('_');
+                    }
+                }
+
+                System.out.println("Guess the word: " + guessWord);
+                int attempts = 7;
+                boolean isGuessed = false;
+
+                while (attempts > 0) {
+                    boolean isCorrectLetter = false;
+
+                    System.out.println("Guess a letter: ");
+                    char guessLetter = sc.next().charAt(0);
 
 
-        Random random = new Random();
-        String selectedWord = words.get(random.nextInt(words.size()));
-        char[] guessedWord = new char[selectedWord.length()];
-        for (int i = 0; i < guessedWord.length; i++) {
-            guessedWord[i] = '_';
-        }
-
-        int chancesLeft = 7;
-        boolean wordGuessed = false;
-        Scanner scanner = new Scanner(System.in);
+                    for (int i = 0; i < rndWord.length(); i++) {
+                        if (guessLetter == rndWord.charAt(i)) {
+                            guessWord.setCharAt(i, guessLetter);
+                            isCorrectLetter = true;
+                        }
+                    }
 
 
-        while (chancesLeft > 0 && !wordGuessed) {
-            System.out.println("Current word: " + String.valueOf(guessedWord));
-            System.out.println("Chances left: " + chancesLeft);
-            System.out.print("Guess a letter: ");
-            char guess = scanner.next().charAt(0);
+                    if (guessWord.toString().equals(rndWord)) {
+                        isGuessed = true;
+                        break;
+                    }
 
-            boolean correctGuess = false;
-            for (int i = 0; i < selectedWord.length(); i++) {
-                if (selectedWord.charAt(i) == guess) {
-                    guessedWord[i] = guess;
-                    correctGuess = true;
+                    if (isCorrectLetter) {
+                        System.out.println("You guessed the letter: " + guessLetter + " correctly");
+                    } else {
+                        System.out.println("The word doesn't contain the letter: " + guessLetter);
+                        attempts--;
+                    }
+
+                    System.out.println("Guessed form: " + guessWord);
+                }
+
+                if (isGuessed) {
+                    System.out.println("You guessed the word: " + rndWord);
+                } else {
+                    System.out.println("You couldn't guess the word: " + rndWord);
                 }
             }
-
-            if (!correctGuess) {
-                chancesLeft--;
-            }
-
-            if (String.valueOf(guessedWord).equals(selectedWord)) {
-                wordGuessed = true;
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-
-        if (wordGuessed) {
-            System.out.println("Congratulations! You guessed the word: " + selectedWord);
-        } else {
-            System.out.println("Sorry, you've run out of chances. The word was: " + selectedWord);
-        }
-
-        }
+    }
 }
-
